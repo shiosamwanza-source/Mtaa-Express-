@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mtaa Express - Soko la Digital la Mtaa Wako</title>
-        <!-- PWA Meta Tags -->
+    
+    <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#4f46e5">
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="icon-192.png">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -146,17 +148,17 @@
                     <a href="#" class="inline-block mt-8 bg-cyan-500 text-white px-6 py-3 rounded-lg font-bold hover:bg-cyan-400 transition">Pata API Keys</a>
                 </div>
                 <div class="flex-1 w-full">
-                    <!-- Code Snippet Mockup -->
+                    <!-- Code Snippet Mockup (Mobile Friendly) -->
                     <div class="bg-slate-950 rounded-xl border border-slate-800 overflow-hidden shadow-2xl">
                         <div class="flex items-center space-x-2 px-4 py-3 border-b border-slate-800 bg-slate-900">
                             <div class="w-3 h-3 rounded-full bg-red-500"></div>
                             <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
                             <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                            <span class="text-slate-500 text-sm ml-4">POST /orders</span>
+                            <span class="text-slate-500 text-xs sm:text-sm ml-4">POST /orders</span>
                         </div>
-                        <pre class="p-6 text-sm text-slate-300 overflow-x-auto"><code><span class="text-purple-400">curl</span> -X POST <span class="text-green-400">https://api.mtaaexpress.co.tz/v1/orders</span> \
--H <span class="text-yellow-400">"Authorization: Bearer {access_token}"</span> \
--H <span class="text-yellow-400">"Content-Type: application/json"</span> \
+                        <div class="p-4 sm:p-6 text-xs sm:text-sm text-slate-300 overflow-x-auto whitespace-pre-wrap break-all">
+<code><span class="text-purple-400">curl</span> -X POST <span class="text-green-400">https://api.mtaaexpress.co.tz/v1/orders</span> \
+-H <span class="text-yellow-400">"Authorization: Bearer {token}"</span> \
 -d <span class="text-yellow-400">'{
   "consumer_id": "usr_123456789",
   "items": [
@@ -165,11 +167,9 @@
       "quantity": 10
     }
   ],
-  "delivery_address": {
-    "landmark": "Karibu na Shule ya Msasani"
-  },
   "payment_method": "wallet"
-}'</span></code></pre>
+}'</span></code>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -223,6 +223,21 @@
             </div>
         </div>
     </footer>
+
+    <!-- PWA Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+              console.log('ServiceWorker registration successful');
+            })
+            .catch(err => {
+              console.log('ServiceWorker registration failed: ', err);
+            });
+        });
+      }
+    </script>
 
 </body>
 </html>
